@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="names_container">
+
+    </div>
+
+    <script>
+        let url = "https://raw.githubusercontent.com/Rajavasanthan/jsondata/master/pagenation.json";
+
+
+        async function getData() {
+            // fetch(url)
+            //     .then((res) => res.json())
+            //     .then((data) => {
+            //         console.log(data)
+            //         console.table(data)
+            //     })
+            let response = await fetch(url)
+            let data = await response.json()
+            console.log(data)
+            console.table(data)
+            var id = 5
+            var getid = id
+            // display(data, id)
+            // var id = parseInt(getid)
+            // getid = id
+
+            for (var i = ((getid - 1) * 10); i < getid * 10; i++) {
+                console.table(i, data[i].id, data[i].name, data[i].email)
+                // let content = document.getElementById("content")
+                // content.textContent = data[i].name
+            }
+
+
+            const name = data.map((item) => item.name)
+            console.log(name)
+
+            const names_container = document.getElementById("names_container")
+            name.forEach(name => {
+                const para = document.createElement('p')
+                para.textContent = name;
+                names_container.appendChild(para)
+            })
+
+
+
+            // function display(data, id) {
+            //     var getid = parseInt(id)
+            //     console.log(getid)
+            //     var sindex = (getid - 1) * 10// => (2 -1) * 10 => 1 * 10 => 10
+            //     var eindex = getid * 10 // 2 * 10 => 20
+
+            //     for (var i = sindex; i < eindex; i++) {
+            //         console.table(i, data[i])
+            //     }
+            // }
+
+
+        }
+
+        getData()
+    </script>
+</body>
+
+</html>

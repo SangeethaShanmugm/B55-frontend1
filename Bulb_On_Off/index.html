@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <div id="bulbContainer">
+            <img id="bulbImage"
+                src="https://media3.giphy.com/media/Lqo3UBlXeHwZDoebKX/giphy.gif?cid=6c09b9527qx9jgranu31nn0vxluzer0puhyp0bb0phyay2bb&ep=v1_gifs_search&rid=giphy.gif&ct=s"
+                alt="bulb" />
+        </div>
+        <button id="button">Switch OFF</button>
+    </div>
+</body>
+
+<script>
+
+    let bulbImage = document.getElementById("bulbImage")
+    let button = document.getElementById("button")
+    console.log(bulbImage.src)
+    button.addEventListener("click", () => {
+        if (bulbImage.src === "https://media3.giphy.com/media/Lqo3UBlXeHwZDoebKX/giphy.gif?cid=6c09b9527qx9jgranu31nn0vxluzer0puhyp0bb0phyay2bb&ep=v1_gifs_search&rid=giphy.gif&ct=s") {
+            bulbImage.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaMkZ9VCLTuWCLqlUr1PF1xEx-kKAUusdTJw&usqp=CAU"
+            button.innerText = "Switch ON"
+        } else {
+            bulbImage.src = "https://media3.giphy.com/media/Lqo3UBlXeHwZDoebKX/giphy.gif?cid=6c09b9527qx9jgranu31nn0vxluzer0puhyp0bb0phyay2bb&ep=v1_gifs_search&rid=giphy.gif&ct=s"
+            button.innerText = "Switch OFF"
+        }
+    })
+
+
+</script>
+
+</html>
