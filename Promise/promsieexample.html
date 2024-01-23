@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <span id="spanTag"></span>
+
+
+    <div id="divTag">
+        This is example of <span class="hidden">hidden</span> text
+    </div>
+
+    <script>
+
+        var spanTag = document.getElementById("spanTag")
+        console.log(spanTag)
+
+        // const p = Promise()
+        // console.log(p)
+        //Uncaught TypeError: Promise resolver undefined is not a function
+        //Uncaught TypeError: Promise constructor cannot be invoked without 'new'
+
+
+        const p1 = new Promise((resolve, reject) => {
+            resolve(false)
+            reject(false)
+
+        })
+        console.log(p1)
+
+        p1.then((res) => {
+            spanTag.textContent = res
+        }).catch((error) => {
+            console.error("Error", error)
+        })
+
+        console.log(p1)
+
+
+        const element = document.getElementById("divTag")
+        console.log(element.textContent)
+        console.log(element.innerText)
+
+
+        var age = 20
+        const p2 = new Promise((resolve, reject) => {
+            if (age > 15) {
+                resolve("Eligible student")
+            } else {
+                reject("Not Eligible student")
+            }
+        })
+
+        console.log(p2)
+
+
+        // const result = 1;
+        // const successValue = new Promise((resolve, reject) => {
+        //     // resolve("Promise resolved")
+        //     reject("Promise rejected")
+        // })
+
+        //execute when promise is successful resolved
+        // successValue
+        //     .then(function success(result) {
+        //         console.log(result)
+        //     })
+        //     //execute when promise is rejected || when there is an error
+        //     .catch((err) => {
+        //         console.log("Rejected so its throwing an error")
+        //     })
+
+        //promise chaining
+        //multiple async oepration  => .then
+        const carts = ["Shoes", "tshirts", "pants", "Pyjamas"]
+
+        const promise = createOrder(carts)//orderId
+
+        console.log(promise)//pending
+
+
+        promise
+            .then(function (orderId) {
+                console.log(orderId)
+                return orderId
+            })
+            .then(function (orderId) {
+                return proceedToPayment(orderId)
+            })
+            .then(function (paymentInfo) {
+                console.log(paymentInfo)
+            })
+            .catch(function (err) {
+                console.log(err.message)
+            })
+
+
+        function createOrder(carts) {
+            const pr = new Promise(function (resolve, reject) {
+                //createorder
+                //validateCart
+                //orderId
+                if (!validateCart(carts)) {
+                    const error = new Error("Cart is not valid")
+                    reject(error)
+                }
+                const orderId = "123";
+                if (orderId) {
+                    setTimeout(() => {
+                        resolve(orderId)
+                    }, 3000)
+                }
+
+            }
+            )
+            return pr
+        }
+
+
+        function proceedToPayment(orderId) {
+            return new Promise((resolve, reject) => {
+                resolve({ message: `Payment successful: ${orderId}`, amount: 5000 })
+            })
+        }
+
+        function validateCart(carts) {
+            return true;
+        }
+
+    </script>
+
+</body>
+
+</html>
