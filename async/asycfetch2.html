@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        async function getWeatherData() {
+            let res = await fetch("https://api.openweathermap.org/data/2.5/weather?lat=44.34&lon=10.99&appid=9ae271f72ce5677f1897de2c25eb5998")
+            let data = await res.json()
+            console.log("Name of the City=>", data.name, "Weather description:=> ", data.weather[0].description)
+        }
+
+        getWeatherData()
+
+    </script>
+</body>
+
+</html>

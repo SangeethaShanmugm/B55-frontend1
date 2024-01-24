@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        let apiKey = "9ae271f72ce5677f1897de2c25eb5998"
+        async function getDataByCityName() {
+            try {
+                let res = await fetch("https://restcountries.com/v3.1/all")
+                let data = await res.json()
+                const result = [...data]
+                console.log(result)
+                console.log(data[0].name.common)
+                const cityName = data[0].name.common
+
+                let res1 = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`)
+                let data1 = await res1.json()
+                console.log(`${cityName}'s Maximum Temperature is ${data1.main.temp.toFixed()}°C`)
+
+            } catch (err) {
+                console.log("Error", err)
+            } finally {
+                console.log("Welcome all")
+            }
+
+
+        }
+        getDataByCityName()
+    </script>
+</body>
+
+</html>
